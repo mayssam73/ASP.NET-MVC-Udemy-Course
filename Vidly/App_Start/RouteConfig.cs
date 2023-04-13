@@ -13,6 +13,9 @@ namespace Vidly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // New and better way to do routing! Check MoviesController for the rest of this
+            routes.MapMvcAttributeRoutes();
+
             // Must add before default route! Define from most specific to most generic. This is because the first applicable route the program sees, it applies
             routes.MapRoute("" +
                 "MoviesByReleaseDate",
