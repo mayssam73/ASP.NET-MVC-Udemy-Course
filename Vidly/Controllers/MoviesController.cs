@@ -24,5 +24,31 @@ namespace Vidly.Controllers
             // For the following, the first parameter is the action, the second is the controller, and the third is the action to redirect to
             // return RedirectToAction("Index", "Home". new { page = 1, sortBy = "name" });
         }
+
+        //Do localhost/movies/edit/id=1 to get to this page in the browser
+        public ActionResult Edit(int id)
+        {
+            return Content("id=" + id);
+        }
+
+        // If pageIndex not specified, movies are displayed on page 1
+        // If sortBy not specified, movies are sorted by name
+        // ? makes it nullable aka optional
+        public ActionResult Index(int? pageIndex, string sortBy)
+        {
+            if (!pageIndex.HasValue)
+            {
+                pageIndex = 1;
+            }
+
+            if (String.IsNullOrWhiteSpace(sortBy))
+            {
+                sortBy = "Name";
+            }
+
+
+            // Prints out "pageIndex=1&sortBy=Name"
+            return Content(String.Format("pageIndex={0}$sortBy={1}", pageIndex, sortBy));
+        }
     }
 }
